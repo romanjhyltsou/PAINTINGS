@@ -39,6 +39,7 @@ const forms = () => {
         });
     };
 
+
     upload.forEach(item => {
         item.addEventListener('input', ()=>{
             console.log(item.files[0]);
@@ -67,7 +68,7 @@ const forms = () => {
             statusImg.setAttribute('src', message.spinner);
             statusImg.classList.add('animated','fadeInUp');
             statusMessage.appendChild(statusImg);
-
+ 
             let textMessage = document.createElement('div');
             textMessage.textContent = message.loading;
             statusMessage.appendChild(textMessage);
