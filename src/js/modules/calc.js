@@ -1,3 +1,5 @@
+import { getResource } from "../services/requests";
+
 let calc = (size, material, options, promocode, result) => {
     const sizeBlock = document.querySelector(size),
     materialBlock = document.querySelector(material),
@@ -5,7 +7,26 @@ let calc = (size, material, options, promocode, result) => {
     promocodeBlock = document.querySelector(promocode),
     resultBlock = document.querySelector(result);
 
-    let sum = 0;
+
+    function changePram(even, elem){
+        elem.addEventListener(even, (e) => {
+            const target = e.target,
+                  select = target.id;
+            console.log(select);
+
+
+
+            getResource('../../assets/calcPrice.json')
+            .then(res => {
+                /* cakcFun(res); */
+            })
+            .catch(err => console.error(err));
+        });
+    }
+
+    changePram('change', sizeBlock);
+
+/*     let sum = 0;
 
 
     const calcFunc = () => {
@@ -23,7 +44,7 @@ let calc = (size, material, options, promocode, result) => {
     sizeBlock.addEventListener('change', calcFunc);
     materialBlock.addEventListener('change', calcFunc);
     optionsBlock.addEventListener('change', calcFunc);
-    promocodeBlock.addEventListener('input', calcFunc);
+    promocodeBlock.addEventListener('input', calcFunc); */
 
 };
 

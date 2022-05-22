@@ -4383,30 +4383,49 @@ window.addEventListener('DOMContentLoaded', function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _services_requests__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/requests */ "./src/js/services/requests.js");
+
+
 var calc = function calc(size, material, options, promocode, result) {
   var sizeBlock = document.querySelector(size),
       materialBlock = document.querySelector(material),
       optionsBlock = document.querySelector(options),
       promocodeBlock = document.querySelector(promocode),
       resultBlock = document.querySelector(result);
-  var sum = 0;
 
-  var calcFunc = function calcFunc() {
-    sum = Math.round(+sizeBlock.value * +materialBlock.value + +optionsBlock.value);
+  function changePram(even, elem) {
+    elem.addEventListener(even, function (e) {
+      var target = e.target,
+          select = target.id;
+      console.log(select);
+      Object(_services_requests__WEBPACK_IMPORTED_MODULE_0__["getResource"])('../../assets/calcPrice.json').then(function (res) {
+        /* cakcFun(res); */
+      }).catch(function (err) {
+        return console.error(err);
+      });
+    });
+  }
 
-    if (sizeBlock.value === '' || materialBlock.value === '') {
-      resultBlock.textContent = "Пожалуйста, выберите размер и материал картины";
-    } else if (promocodeBlock.value === 'IWANTPOPART') {
-      resultBlock.textContent = Math.round(sum * 0.7);
-    } else {
-      resultBlock.textContent = sum;
-    }
-  };
-
-  sizeBlock.addEventListener('change', calcFunc);
-  materialBlock.addEventListener('change', calcFunc);
-  optionsBlock.addEventListener('change', calcFunc);
-  promocodeBlock.addEventListener('input', calcFunc);
+  changePram('change', sizeBlock);
+  /*     let sum = 0;
+  
+  
+      const calcFunc = () => {
+          sum = Math.round((+sizeBlock.value) * (+materialBlock.value) + (+optionsBlock.value));
+  
+          if (sizeBlock.value === '' || materialBlock.value === ''){
+              resultBlock.textContent = "Пожалуйста, выберите размер и материал картины";
+          }else if (promocodeBlock.value === 'IWANTPOPART'){
+              resultBlock.textContent = Math.round(sum * 0.7);
+          }else{
+              resultBlock.textContent = sum;
+          }
+      };
+  
+      sizeBlock.addEventListener('change', calcFunc);
+      materialBlock.addEventListener('change', calcFunc);
+      optionsBlock.addEventListener('change', calcFunc);
+      promocodeBlock.addEventListener('input', calcFunc); */
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (calc);
